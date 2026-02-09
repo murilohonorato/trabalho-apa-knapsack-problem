@@ -18,7 +18,6 @@ namespace KnapsackSolver {
         cout << "-----------------------------\n";
     }
 
-    //Função auxiliar pra impressão
     void imprimirPasso(const Item& item, double peso_usado, double valor_pego, double restante, int tipo) {
         if (tipo == 0) { //Pega tudo
             cout << "Pegou 100% do item " << item.id 
@@ -26,7 +25,7 @@ namespace KnapsackSolver {
                  << "). Capacidade restante: " << restante << "\n";
 
         } else { //Pega fração
-            double fracao = peso_usado / item.peso;
+            double fracao = peso_usado / (1.0*item.peso);
             cout << "Pegou " << (fracao * 100) << "% do item " << item.id 
                  << " (Peso: " << peso_usado << "/" << item.peso 
                  << ", Valor: " << valor_pego 
@@ -34,14 +33,14 @@ namespace KnapsackSolver {
         }
     }
 
-    double fracionaria(vector<Item>& itens, double capacidade) {
+    double fracionaria(vector<Item>& itens, int capacidade) {
         sort(itens.begin(), itens.end(), compararRazao); //ordena os itens pela razão decrescente
 
         double valor_total = 0.0;
-        double capacidade_atual = capacidade;
+        int capacidade_atual = capacidade;
 
-        cout << "\nExecução da Mochila Fracionária\n";
-        cout << "Capacidade inicial: " << capacidade << "\n";
+        //cout << "\nExecução da Mochila Fracionária\n";
+        //cout << "Capacidade inicial: " << capacidade << "\n";
 
         for (auto item : itens) {
             if (capacidade_atual <= 0) break;
@@ -49,20 +48,20 @@ namespace KnapsackSolver {
             if (item.peso <= capacidade_atual) { //pega tudo
                 capacidade_atual -= item.peso;
                 valor_total += item.valor;
-                imprimirPasso(item, item.peso, item.valor, capacidade_atual, 0);
+                //imprimirPasso(item, item.peso, item.valor, capacidade_atual, 0);
             } else { //pega fração
                 double fracao = capacidade_atual/(1.0*item.peso);
                 double valor_fracao = item.valor*fracao;
                 valor_total += valor_fracao;
-                imprimirPasso(item, capacidade_atual, valor_fracao, 0.0, 1);
+                //imprimirPasso(item, capacidade_atual, valor_fracao, 0.0, 1);
                 capacidade_atual = 0;
             }
         }
         return valor_total;
     }
 
-    double binariaRecursiva(const vector<Item>& itens, double capacidade, int index) {
-        if (index == itens.size() || capacidade == 0) return 0;
+    double binariaRecursiva(const vector<Item>& itens, int capacidade, int index) {
+        if (index == (int)itens.size() || capacidade == 0) return 0;
 
         if (itens[index].peso > capacidade) return binariaRecursiva(itens, capacidade, index+1); //ignora o item atual
 
@@ -72,8 +71,38 @@ namespace KnapsackSolver {
         return max(incluir, nao_incluir);
     }
 
-    double binaria(vector<Item>& itens, double capacidade) {
+    double binaria(vector<Item>& itens, int capacidade) {
         return binariaRecursiva(itens, capacidade, 0);
+    }
+
+    double binariaDP(const vector<Item>& itens, int capacidade) {
+        // Otimização de espaço: usa apenas um vetor de tamanho capacidade+1
+        vector<double> dp(capacidade + 1, 0.0);
+
+        for (auto item : itens) {
+            for (int w = capacidade; w >= item.peso; w--) {
+                dp[w] = max(dp[w], item.valor + dp[w - item.peso]);
+            }
+        }
+        return dp[capacidade];
+    }
+
+    int readData(vector<Item>& itens) {
+        int n;
+        double w_input;
+        if (!(cin >> n >> w_input)) return 0;
+        int capacidade = (int)w_input;
+
+        itens.clear();
+        itens.reserve(n);
+
+        for (int i = 0; i < n; i++) {
+            double v, p_input;
+            cin >> v >> p_input;
+            itens.emplace_back(i+1, (int)p_input, v);
+        }
+
+        return capacidade;
     }
 
 }
