@@ -5,7 +5,9 @@ Este projeto implementa soluções para o Problema da Mochila (Fracionária e Bi
 ## 🚀 Como Utilizar
 
 ### 1. Pré-requisitos
-Certifique-se de ter o `g++` e o `make` instalados em seu sistema.
+Certifique-se de ter os seguintes componentes instalados:
+*   `g++` e `make` (para o código C++)
+*   `Python 3.x`, `pandas` e `matplotlib` (para a geração de gráficos)
 
 ### 2. Clonando o Repositório
 ```bash
@@ -36,6 +38,15 @@ O Makefile possui regras dinâmicas para facilitar a execução dos arquivos de 
   make 5
   ```
 
+### 5. Geração de Gráficos
+Para gerar ou atualizar os gráficos de desempenho baseados nos dados coletados no relatório, siga os passos:
+
+```bash
+cd graficos
+python plot_results.py
+```
+Isso atualizará os arquivos de imagem (`.png`) na pasta `graficos/` com base nos dados do `performance_report.md`.
+
 ## 📁 Estrutura do Projeto
 
 - `codigos/`: Contém os arquivos-fonte C++ (`main.cpp`, `knapsack.cpp`, `knapsack.hpp`) e o binário gerado.
@@ -44,5 +55,7 @@ O Makefile possui regras dinâmicas para facilitar a execução dos arquivos de 
 - `Makefile`: Automação de compilação e execução.
 
 ## 🛠️ Tecnologias Utilizadas
-- C++
-- Makefile
+- C++ (Algoritmos)
+- Python (Geração de Dados e Gráficos)
+- Makefile (Automação de Compilação)
+- Matplotlib & Pandas (Análise Visual)
