@@ -16,17 +16,25 @@ struct Item {
     }
 };
 
-namespace KnapsackSolver {
-    double fracionaria(vector<Item>& itens, int capacidade); //mochila fracionária
-    double binaria(vector<Item>& itens, int capacidade); //mochila 0/1
-    void printItens(const vector<Item>& itens);
+class Knapsack {
+    private:
+        vector<Item> itens;
+        int capacidade;
 
-    //Funções auxiliares
-    int readData(vector<Item>& itens);
-    int compararRazao(const Item& a, const Item& b);
-    void imprimirPasso(const Item& item, double peso_usado, double valor_pego, double restante, int tipo);
-    double binariaRecursiva(const vector<Item>& itens, int capacidade, int index);
-    double binariaDP(const vector<Item>& itens, int capacidade);
-}
+        static bool compararRazao(Item a, Item b);
+        void imprimirPasso(Item item, double peso_usado, double valor_pego, double restante, int tipo);
+        double binariaRecursiva(int capacidade, int index);
+
+    public:
+        Knapsack(const vector<Item>& i, int c) : itens(i), capacidade(c) {} //construtor
+
+        double fracionaria(); //mochila fracionária
+        double binaria();     //mochila 0/1 recursiva
+        double binariaDP();   //mochila 0/1 DP
+
+        void printItens();
+
+        static int readData(vector<Item>& itens_out);
+};
 
 #endif

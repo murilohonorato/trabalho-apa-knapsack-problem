@@ -1,0 +1,25 @@
+Perguntas elaboradas pelo grupo G
+Tema: Algoritmos Gulosos - Mochila Fracionária
+
+Exercício 1) Por que a estratégia gulosa garante o ótimo para a mochila fracionária, mas não para a mochila 0/1?
+   a) Porque na 0/1 itens de alta densidade podem impedir combinações de itens menores que somariam um valor total maior.
+   b) Porque na 0/1 a mochila só aceita itens que pesam exatamente 0kg ou 1kg.
+   c) Porque na mochila 0/1 os itens são excluidos se você tentar dividi-los.
+   d) Porque o guloso falha ao não considerar o ID do item como critério de desempate obrigatório.
+
+Exercício 2) Qual a complexidade de tempo da mochila fracionária e qual etapa é a mais custosa?
+   a) O(n) e loop de preenchimento.
+   b) O(n log n) e ordenação por densidade.
+   c) O(n²) e múltiplas comparações entre todos os itens.
+   d) O(2^n) e análise combinatória exponencial.
+
+Exercício 3) A ordem de escolha entre itens com a mesma densidade (valor/peso) altera o resultado final?
+   a) Sim, o ID do item define a prioridade para garantir a otimalidade.
+   b) Não, itens com mesma densidade rendem o mesmo valor por unidade de peso.
+   c) Sim, itens mais pesados devem ter prioridade de processamento.
+   d) Não, o valor total depende apenas da capacidade, ignorando os itens.
+
+GABARITO:
+1. a
+2. b
+3. b
