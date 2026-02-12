@@ -17,9 +17,9 @@ O projeto explora diferentes paradigmas de programação para resolver problemas
 ## 🚀 Destaques Técnicos
 
 - **Alta Performance**: Uso de *Fast I/O* em C++ e reserva estratégica de memória para processar instâncias com até $10^7$ itens.
-- **Otimização de Espaço**: Redução da complexidade de espaço da DP de $O(NW)$ para $O(W)$, permitindo a execução em hardware convencional com grandes capacidades.
-- **Arquitetura POO**: Código estruturado em classes para garantir modularidade, encapsulamento e facilidade de manutenção.
-- **Automação**: Funções de geração de dados em Python e orquestração completa via Makefile.
+- **Otimização de Espaço**: Redução da complexidade de espaço da DP de $O(NW)$ para $O(W)$, permitindo a execução em hardware convencional com grandes capacidades (instâncias de até 5 milhões de subproblemas em RAM).
+- **Arquitetura POO**: Código estruturado na classe `Knapsack` para garantir modularidade, encapsulamento e separação entre interface (`.hpp`) e implementação (`.cpp`).
+- **Automação de Testes**: Pipeline completo com geração de dados em Python e orquestração via Makefile com flags de otimização `-O3`.
 
 ## 🛠️ Como Utilizar
 
@@ -32,14 +32,14 @@ cd trabalho-apa-knapsack-problem
 ### 2. Pré-requisitos
 Certifique-se de ter os seguintes componentes instalados:
 *   `g++` e `make` (para o código C++)
-*   `Python 3.x`, `pandas` e `matplotlib` (para a geração de gráficos)
+*   `Python 3.x`, `pandas` e `matplotlib` (para a geração de gráficos e análise visual)
 
 ### 3. Compilação
 Na raiz do projeto, execute:
 ```bash
 make
 ```
-O executável será gerado em `codigos/main`.
+O executável `main` será gerado dentro da pasta `codigos/`.
 
 ### 4. Execução Dinâmica
 O Makefile simplifica a execução contra os arquivos da pasta `dados/`:
@@ -47,25 +47,26 @@ O Makefile simplifica a execução contra os arquivos da pasta `dados/`:
 - Para testar com `dados/input5.txt`: `make 5`
 - Para testar com `dados/input2.txt`: `make 2`
 
-### 5. Geração de Gráficos
-Para atualizar os gráficos de desempenho:
+### 5. Análise Visual e Gráficos
+Para atualizar os gráficos de desempenho baseados nos benchmarks coletados:
 ```bash
 cd graficos
 python plot_results.py
 ```
+Isso gerará visualizações como `comparativo_geral.png` e `explosao_recursiva.png`.
 
 ## 📁 Estrutura do Projeto
 
 - `relatorio-grupo-G.pdf`: Relatório técnico detalhado em formato SBC (LaTeX).
-- `perguntas-grupo-G.txt`: Perguntas de revisão e gabarito.
-- `codigos/`: Implementação C++ (Classe `Knapsack`).
-- `graficos/`: Relatórios de performance e análises visuais.
-- `dados/`: Conjunto de casos de teste e scripts de geração.
+- `perguntas-grupo-G.txt`: Questionário de revisão com gabarito sobre o tema.
+- `codigos/`: Implementação core em C++ (`knapsack.hpp`, `knapsack.cpp`, `main.cpp`).
+- `graficos/`: Scripts de plotagem, imagens geradas e o `performance_report.md`.
+- `dados/`: Conjunto de casos de teste (`input*.txt`) e o script `generate.py`.
 - `README.md`: Documentação principal do projeto.
 
 ## 📊 Resultados e Benchmarks
 
-Abaixo, apresentamos o comparativo completo de desempenho entre as abordagens implementadas:
+Abaixo, apresentamos o comparativo completo de desempenho coletado durante os testes:
 
 | N (Itens) | Capacidade | Guloso | Rec. (Binário) | DP (Binário) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -85,9 +86,10 @@ Abaixo, apresentamos o comparativo completo de desempenho entre as abordagens im
 | 1.000.000 | 500.000 | 0.0742s | - | 147.60s |
 | 10.000.000 | 5.000.000 | 0.8935s | - | ~4.1 h* |
 
-*\*Valores estimados com base na complexidade assintótica e performance prévia.*
+*\*Valores estimados com base na complexidade assintótica $O(2^N)$.*
 
 ## 🛠️ Tecnologias Utilizadas
-- **C++**: Implementação dos algoritmos.
-- **Python**: Geração de dados e visualização de performance (Matplotlib & Pandas).
-- **Makefile**: Automação de compilação e testes.
+- **C++**: Implementação de alta performance dos algoritmos de otimização.
+- **Python**: Automação da geração de cargas de teste e análise visual (Matplotlib & Pandas).
+- **Makefile**: Gestão de build e orquestração de testes automatizados.
+- **LaTeX (Beamer & SBC)**: Produção da documentação técnica e material visual do seminário.
