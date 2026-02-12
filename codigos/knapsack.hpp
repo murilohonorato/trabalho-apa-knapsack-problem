@@ -31,9 +31,7 @@ class Knapsack {
         double fracionaria(); //mochila fracionária
         double binaria();     //mochila 0/1 recursiva
         double binariaDP();   //mochila 0/1 DP
-
         void printItens();
-
         static int readData(vector<Item>& itens_out);
 };
 

@@ -13,13 +13,9 @@ Exercício 2) Qual a complexidade de tempo da mochila fracionária e qual etapa 
    c) O(n²) e múltiplas comparações entre todos os itens.
    d) O(2^n) e análise combinatória exponencial.
 
-Exercício 3) A ordem de escolha entre itens com a mesma densidade (valor/peso) altera o resultado final?
-   a) Sim, o ID do item define a prioridade para garantir a otimalidade.
-   b) Não, itens com mesma densidade rendem o mesmo valor por unidade de peso.
-   c) Sim, itens mais pesados devem ter prioridade de processamento.
-   d) Não, o valor total depende apenas da capacidade, ignorando os itens.
+
+
 
 GABARITO:
 1. a
 2. b
-3. b

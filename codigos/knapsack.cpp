@@ -43,12 +43,10 @@ double Knapsack::fracionaria() {
         if (item.peso <= capacidade_atual) { //pega tudo
             capacidade_atual -= item.peso;
             valor_total += item.valor;
-                //imprimirPasso(item, item.peso, item.valor, capacidade_atual, 0); //debug
         } else { //pega fração
             double fracao = capacidade_atual/(1.0*item.peso);
             double valor_fracao = item.valor*fracao;
             valor_total += valor_fracao;
-                //imprimirPasso(item, capacidade_atual, valor_fracao, 0.0, 1); //debug
             capacidade_atual = 0;
         }
     }
