@@ -31,8 +31,8 @@ cd trabalho-apa-knapsack-problem
 
 ### 2. Pré-requisitos
 Certifique-se de ter os seguintes componentes instalados:
-- **C++**: Compilador `g++` (suporte a C++11 ou superior) e feramenta `make`.
-- **Python**: Versão 3.x com bibliotecas `pandas` e `matplotlib` (necessários para a geração de gráficos).
+*   `g++` e `make` (para o código C++)
+*   `Python 3.x`, `pandas` e `matplotlib` (para a geração de gráficos)
 
 ### 3. Compilação
 Na raiz do projeto, execute:
